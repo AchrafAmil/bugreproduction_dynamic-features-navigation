@@ -3,13 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph_main"
+    app:moduleName="app"
     app:startDestination="@id/firstScreen"
     >
+
+    <include-dynamic
+        android:id="@+id/includedGraph"
+        app:graphPackage="com.fabernovel.bugreproduction.foofeature"
+        app:graphResName="@+id/nav_graph_foo"
+        app:moduleName="foofeature"
+        />
 
     <fragment
         android:id="@+id/firstScreen"
         android:name="com.fabernovel.bugreproduction.dynamic_navigation.FirstFragment"
         android:label="FirstScreen"
+        app:moduleName="app"
         >
         <action
             android:id="@+id/action_first_to_second"
@@ -21,6 +30,12 @@
         android:id="@+id/secondScreen"
         android:name="com.fabernovel.bugreproduction.dynamic_navigation.SecondFragment"
         android:label="SecondScreen"
-        />
+        app:moduleName="app"
+        >
+        <action
+            android:id="@+id/action_second_to_foo"
+            app:destination="@id/includedGraph"
+            />
+    </fragment>
 
 </navigation>
